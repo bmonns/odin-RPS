@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <style>
+        #timewaster{
+            color: blue;
+        }
+        #rules{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock, Paper, Scissors</h1>
+    
+    <div id="timewaster">Ya'll know this game, don't waste my time</div>
+    <div id="rules">Cheatsheet Down below:
+        <ul>
+            <li>0 = rock</li>
+            <li>2 = paper</li>
+            <li>1 = scissors</li>
+        </ul>
+    </div>
+
+    <p>Your Guess:</p>
+    <input type="text" placeholder="Type " id="guess">
+    <button id="button" type="button">Compete</button>
+
+            <!--function to return rock paper or scissors
+            0 = rock
+            1 = sciss
+            2 = paper-->
+
+    <h3 id="Results">Results:</h3>
+
+    <p id="ResultsReplace"></p>
+    <script> 
+
+    document.getElementById('button').addEventListener("click", myFunction);
+    
+    function myFunction(){
+        let userInput = document.getElementById('guess').value;
+        let random = randomTurn()
+        if(userInput != '' && random != ''){
+            if(!validateInput(userInput.toUpperCase(),random.toUpperCase())){return}
+            determineWinner(userInput.toUpperCase(), random.toUpperCase())
+        }
+    }
+
+    function randomTurn(){
+        let arr = ['Rock','Paper','Scissors']
+        return arr[Math.floor(Math.random() * arr.length)]
+    }
+
+    function validateInput(playerGuess, randomGuess){
+        const arr = ['SCISSORS','PAPER','ROCK']
+        if(!arr.includes(playerGuess)){
+            alert("Invalid Player Guess")
+            return false
+        }else if(!arr.includes(randomGuess)){
+             alert("Invalid Computer Guess")
+            return false
+        }
+        return true
+    }
+
+    function determineWinner(playerGuess, randomguess){
+
+        let winner = undefined
+        if(playerGuess == "PAPER" && randomguess == "ROCK"){
+            winner  ="Player wins"
+        }else if(playerGuess == "PAPER" && randomguess == "SCISSORS"){
+            winner  ="Player loses"
+        }else if(playerGuess == "PAPER" && randomguess == "PAPER"){
+            winner  ="Tie play again."
+        }else if(playerGuess == "ROCK" && randomguess == "ROCK"){
+            winner  ="Tied play again"
+        }else if(playerGuess == "ROCK" && randomguess == "SCISSORS"){
+            winner  ="Player wins"
+        }else if(playerGuess == "ROCK" && randomguess == "PAPER"){
+            winner  ="Playerr loses"
+
+        }if(playerGuess == "SCISSORS" && randomguess == "ROCK"){
+            winner  ="Player loses"
+        }else if(playerGuess == "SCISSORS" && randomguess == "SCISSORS"){
+            winner  ="TIe play again."
+        }else if(playerGuess == "SCISSORS" && randomguess == "PAPER"){
+            winner  ="Tie play wins."
+        }
+
+        document.getElementById('ResultsReplace').innerHTML =  winner + "<br>" + "Player Guess: " + playerGuess  
+        + "<br>" + "Comp Guess: " + randomguess
+    }
+
+    </script>
+<a href="#header">Return to Top</a>
+
+</body>
+</html>
