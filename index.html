@@ -14,6 +14,9 @@
         #rules{
             background-color: orange;
         }
+        #button{
+            color: yellow;
+        }
     </style>
 </head>
 <body>
@@ -39,17 +42,24 @@
 
     <h3 id="Results">Results:</h3>
 
-    <p id="ResultsReplace"></p>
+    <p id="ResultsReplace">Please play the game</p>
     <script> 
 
     document.getElementById('button').addEventListener("click", myFunction);
-    
+    document.getElementById('guess').addEventListener("keypress", myEnterVal);
+
     function myFunction(){
         let userInput = document.getElementById('guess').value;
         let random = randomTurn()
         if(userInput != '' && random != ''){
             if(!validateInput(userInput.toUpperCase(),random.toUpperCase())){return}
             determineWinner(userInput.toUpperCase(), random.toUpperCase())
+        }
+    }
+
+    function myEnterVal(e){
+        if(e.key=="Enter"){
+            myFunction()
         }
     }
 
@@ -74,24 +84,23 @@
 
         let winner = undefined
         if(playerGuess == "PAPER" && randomguess == "ROCK"){
-            winner  ="Player wins"
+            winner  ="Player Wins"
         }else if(playerGuess == "PAPER" && randomguess == "SCISSORS"){
-            winner  ="Player loses"
+            winner  ="Player Loses"
         }else if(playerGuess == "PAPER" && randomguess == "PAPER"){
-            winner  ="Tie play again."
+            winner  ="Tie Play Again."
         }else if(playerGuess == "ROCK" && randomguess == "ROCK"){
-            winner  ="Tied play again"
+            winner  ="Tied Play Again"
         }else if(playerGuess == "ROCK" && randomguess == "SCISSORS"){
-            winner  ="Player wins"
+            winner  ="Player Wins"
         }else if(playerGuess == "ROCK" && randomguess == "PAPER"){
-            winner  ="Playerr loses"
-
+            winner  ="Player Loses"
         }if(playerGuess == "SCISSORS" && randomguess == "ROCK"){
-            winner  ="Player loses"
+            winner  ="Player Loses"
         }else if(playerGuess == "SCISSORS" && randomguess == "SCISSORS"){
-            winner  ="TIe play again."
+            winner  ="TIe Play Again."
         }else if(playerGuess == "SCISSORS" && randomguess == "PAPER"){
-            winner  ="Tie play wins."
+            winner  ="Tie play Wins."
         }
 
         document.getElementById('ResultsReplace').innerHTML =  winner + "<br>" + "Player Guess: " + playerGuess  
