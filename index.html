@@ -109,7 +109,8 @@
         }else if(playerGuess == "SCISSORS" && randomguess == "SCISSORS"){
             winner  ="Tie Play Again."
         }else if(playerGuess == "SCISSORS" && randomguess == "PAPER"){
-            winner  ="Tie play Wins."
+            winner  ="Player Wins."
+            player_counter = player_counter + 1
         }
 
         document.getElementById('ResultsReplace').innerHTML =  winner + "<br>" + "Player Guess: " + playerGuess  
