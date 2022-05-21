@@ -23,22 +23,28 @@
     <h1>Rock, Paper, Scissors</h1>
     
     <div id="timewaster">Ya'll know this game, don't waste my time</div>
-    <div id="rules">Cheatsheet Down below:
+    <div id="rules">Valid entries:
         <ul>
-            <li>0 = rock</li>
-            <li>2 = paper</li>
-            <li>1 = scissors</li>
+            <li>rock</li>
+            <li>paper</li>
+            <li>scissors</li>
         </ul>
     </div>
 
     <p>Your Guess:</p>
-    <input type="text" placeholder="Type " id="guess">
+    <input autocomplete="off" type="text" placeholder="Type " id="guess">
     <button id="button" type="button">Compete</button>
 
             <!--function to return rock paper or scissors
             0 = rock
             1 = sciss
             2 = paper-->
+    
+    <h3 id="Score">Score:</h3>
+    <p id="ScoreCount">
+        Player Score: 0<br>
+        Computer Score: 0
+    </p>
 
     <h3 id="Results">Results:</h3>
 
@@ -73,39 +79,45 @@
         if(!arr.includes(playerGuess)){
             alert("Invalid Player Guess")
             return false
-        }else if(!arr.includes(randomGuess)){
-             alert("Invalid Computer Guess")
-            return false
         }
         return true
     }
 
+    let comp_counter = 0
+    let player_counter = 0
     function determineWinner(playerGuess, randomguess){
-
         let winner = undefined
         if(playerGuess == "PAPER" && randomguess == "ROCK"){
             winner  ="Player Wins"
+            player_counter = player_counter + 1
         }else if(playerGuess == "PAPER" && randomguess == "SCISSORS"){
             winner  ="Player Loses"
+            comp_counter = comp_counter + 1
         }else if(playerGuess == "PAPER" && randomguess == "PAPER"){
             winner  ="Tie Play Again."
         }else if(playerGuess == "ROCK" && randomguess == "ROCK"){
             winner  ="Tied Play Again"
         }else if(playerGuess == "ROCK" && randomguess == "SCISSORS"){
             winner  ="Player Wins"
+            player_counter = player_counter + 1
         }else if(playerGuess == "ROCK" && randomguess == "PAPER"){
             winner  ="Player Loses"
+            comp_counter = comp_counter + 1
         }if(playerGuess == "SCISSORS" && randomguess == "ROCK"){
             winner  ="Player Loses"
+            comp_counter = comp_counter + 1
         }else if(playerGuess == "SCISSORS" && randomguess == "SCISSORS"){
-            winner  ="TIe Play Again."
+            winner  ="Tie Play Again."
         }else if(playerGuess == "SCISSORS" && randomguess == "PAPER"){
             winner  ="Tie play Wins."
         }
 
         document.getElementById('ResultsReplace').innerHTML =  winner + "<br>" + "Player Guess: " + playerGuess  
         + "<br>" + "Comp Guess: " + randomguess
+        document.getElementById('ScoreCount').innerHTML =   "Player Score: " + player_counter + "<br>" + "Computer Score: " + comp_counter  
+        + "<br>"
     }
+
 
     </script>
 </body>
